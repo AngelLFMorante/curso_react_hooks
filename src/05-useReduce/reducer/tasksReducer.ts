@@ -1,7 +1,7 @@
 //REDUCE SE PUEDE IMPLEMENTAR EN OTROS LENGUAJES NO ES DE REACT
 
 import { compile } from "tailwindcss";
-
+import * as z from "zod";
 
 interface Todo {
     id: number;
@@ -9,8 +9,20 @@ interface Todo {
     completed: boolean;
 }
 
+const TodoSchema = z.object({
+    id: z.number(),
+    text: z.string(),
+    completed: z.boolean()
+});
 
 
+//validaciones con el paquete Zod
+const TaskStateSchema = z.object({
+    todos: z.array(TodoSchema),
+    length: z.number(),
+    pending: z.number(),
+    completed: z.number()
+})
 interface TaskState {
     todos: Todo[];
     length: number;
@@ -27,12 +39,33 @@ export type TaskAction =
 //para darle acciones hay que hacerlo asi y we can add more actions, no hace falta el punto y coma
 
 export const getTasksInitialState = (): TaskState => {
-    return {
-        todos: [],
-        completed: 0,
-        pending: 0,
-        length: 0
+    const localStorageState = localStorage.getItem('tasks-state');
+    if (!localStorageState) {
+        return {
+            todos: [],
+            completed: 0,
+            pending: 0,
+            length: 0
+        }
     }
+
+    //validar con Zod
+    const result = TaskStateSchema.safeParse(JSON.parse(localStorageState));
+
+    if (result.error) {
+        console.log(result.error);
+        return {
+            todos: [],
+            completed: 0,
+            pending: 0,
+            length: 0
+        }
+    }
+    //ahora con el validador :
+    return result.data;
+
+    //! cuidado porque el objeto puede estar manipuladonpm install zod
+    // return JSON.parse(localStorageState);
 }
 
 //un reducer es una function que debe de regresar un nuevo estado basado en los argumentos, state y action
