@@ -9,9 +9,11 @@ import './index.css'
 // import { TrafficLight } from './01-useState/TrafficLight'
 // import { TrafficLightWithEffect } from './02-useEffect/TrafficLightWithEffect'
 // import { TrafficLightWithHook } from './02-useEffect/TrafficLightWithHook'
-import { PokemonPage } from './03-examples/PokemonPage'
-import { TasksApp } from './05-useReduce/TaskApp'
-import { ScrambleWords } from './05-useReduce/ScrambleWords'
+// import { PokemonPage } from './03-examples/PokemonPage'
+// import { TasksApp } from './05-useReduce/TaskApp'
+// import { ScrambleWords } from './05-useReduce/ScrambleWords'
+// import { MemoHook } from './06-memoHook/MemoHook'
+import { MemoCounter } from './06-memoHook/MemoCounter'
 // import { FocusScreen } from './04-useRef/FocusScreen'
 
 createRoot(document.getElementById('root')!).render(
@@ -23,6 +25,8 @@ createRoot(document.getElementById('root')!).render(
     {/* <PokemonPage /> */}
     {/* <FocusScreen /> */}
     {/* <TasksApp /> */}
-    <ScrambleWords />
+    {/* <ScrambleWords /> */}
+    {/* <MemoHook /> */}
+    <MemoCounter />
   </StrictMode>,
 )
