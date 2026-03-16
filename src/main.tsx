@@ -6,8 +6,11 @@ import { Toaster } from 'sonner' //es un dolor porque hay que cambiar en todos l
 
 
 import './index.css'
-import { ClientInformation } from './08-use-suspense/ClientInformation'
-import { getUserAction } from './08-use-suspense/api/get-user.action'
+
+
+// import { ClientInformation } from './08-use-suspense/ClientInformation'
+// import { getUserAction } from './08-use-suspense/api/get-user.action'
+import { ProfesionalApp } from './09-useContext/ProfesionalApp'
 // import { TrafficLight } from './01-useState/TrafficLight'
 // import { TrafficLightWithEffect } from './02-useEffect/TrafficLightWithEffect'
 // import { TrafficLightWithHook } from './02-useEffect/TrafficLightWithHook'
@@ -33,12 +36,13 @@ createRoot(document.getElementById('root')!).render(
     {/* <MemoHook /> */}
     {/* <MemoCounter /> */}
     {/* <InstagromApp /> */}
-    <Suspense fallback={
+    {/* <Suspense fallback={
       <div className="bg-gradient flex flex-col">
         <h1 className="text-2xl">Cargando...</h1>
       </div>
     }>
       <ClientInformation getUser={getUserAction(100)} />
-    </Suspense>
+    </Suspense> */}
+    <ProfesionalApp />
   </StrictMode>,
 )
